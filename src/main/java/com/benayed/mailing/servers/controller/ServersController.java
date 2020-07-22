@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.benayed.mailing.servers.dto.ServerDto;
 import com.benayed.mailing.servers.service.ServerService;
-import com.benayed.mailling.servers.dto.ServerDto;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;

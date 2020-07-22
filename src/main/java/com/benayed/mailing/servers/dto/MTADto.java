@@ -1,4 +1,4 @@
-package com.benayed.mailling.servers.dto;
+package com.benayed.mailing.servers.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

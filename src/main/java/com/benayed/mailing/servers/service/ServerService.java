@@ -5,8 +5,8 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
+import com.benayed.mailing.servers.dto.ServerDto;
 import com.benayed.mailing.servers.repository.ServerRepository;
-import com.benayed.mailling.servers.dto.ServerDto;
 
 @Service
 public class ServerService {
