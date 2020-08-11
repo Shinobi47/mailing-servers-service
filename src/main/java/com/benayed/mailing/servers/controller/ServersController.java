@@ -44,9 +44,12 @@ public class ServersController {
 			  @ApiResponse(responseCode = "404", description = "Book not found", 
 			    content = @Content) })
 	@GetMapping(path = "/servers")
-	public ResponseEntity<List<ServerDto>> fetchServers(){
+	public ResponseEntity<?> fetchServers(){
 		
-		return new ResponseEntity<>(serverService.getAllServers(), serverService.getAllServers().isEmpty() ? HttpStatus.NOT_FOUND : HttpStatus.OK);
+		List<ServerDto> allServers = serverService.getAllServers();
+		return allServers.isEmpty() 
+				? new ResponseEntity<List<ServerDto>>(allServers, HttpStatus.OK) 
+						: new ResponseEntity<List<ServerDto>>(allServers, HttpStatus.NOT_FOUND);
 	}
 
 }
