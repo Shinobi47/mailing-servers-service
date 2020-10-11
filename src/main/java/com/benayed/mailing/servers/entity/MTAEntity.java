@@ -23,8 +23,20 @@ public class MTAEntity {
 	@Column(name = "MTA_NAME")
 	private String name;
 	
+	@Column(name = "MTA_DNS")
+	private String dns;
+	
 	@Column(name = "MTA_IP")
 	private String ip;
+	
+	@Column(name = "MTA_PORT")
+	private String port;	
+	
+	@Column(name = "MTA_USERNAME")
+	private String username;
+	
+	@Column(name = "MTA_PASSWORD")
+	private String password;
 	
 	@ManyToOne
     @JoinColumn(name="MTA_SERVER_ID")
