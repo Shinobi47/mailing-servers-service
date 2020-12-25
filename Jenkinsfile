@@ -21,7 +21,7 @@ pipeline {
                 // sh "mvn -Dmaven.test.failure.ignore=true clean package"
 
                 // To run Maven on a Windows agent, use
-                bat "C:\\Users\\Administrator\\Desktop\\apache-maven-3.6.3\\bin\\mvn -Dmaven.test.failure.ignore=true clean install"
+                bat "C:\\Users\\Administrator\\Desktop\\apache-maven-3.6.3\\bin\\mvn.cmd -Dmaven.test.failure.ignore=true clean install"
             }
 
             post {
@@ -36,7 +36,7 @@ pipeline {
 		
 		stage('Test') {
             steps {
-                echo "hello ! C:\\Users\\Administrator\\Desktop\\apache-maven-3.6.3\\bin\\mvn -Dmaven.test.failure.ignore=true clean test"
+                echo "hello ! C:\\Users\\Administrator\\Desktop\\apache-maven-3.6.3\\bin\\mvn.cmd -Dmaven.test.failure.ignore=true clean test"
             }
         }
     }
