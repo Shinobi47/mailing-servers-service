@@ -36,7 +36,7 @@ pipeline {
 		
 		stage('Test') {
             steps {
-                echo "hello ! C:\Users\Administrator\Desktop\apache-maven-3.6.3\bin\mvn -Dmaven.test.failure.ignore=true clean test"
+                echo "hello ! C:\\Users\\Administrator\\Desktop\\apache-maven-3.6.3\\bin\\mvn -Dmaven.test.failure.ignore=true clean test"
             }
         }
     }
