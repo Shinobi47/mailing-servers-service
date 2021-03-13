@@ -22,11 +22,22 @@ public class ServerService {
 	private DataMapper dataMapper;
 	
 	public List<ServerDto> getAllServers(){
-		return serverRepository.findAll().stream().map(dataMapper::toDto).collect(Collectors.toList());
+		return serverRepository.findAll()
+				.stream().map(dataMapper::toDto)
+				.collect(Collectors.toList());
 	}
 	
-	public List<MTADto> getMTAs(List<Long> mtaIds) {
-		return mtaRepository.findByIdIn(mtaIds).stream().map(dataMapper::toDto).collect(Collectors.toList());
+	public List<ServerDto> getServersWithMtas(){
+		boolean shouldMapMtas = true;
+		return serverRepository.findAll().stream()
+				.map(entity -> dataMapper.toDto(entity, shouldMapMtas))
+				.collect(Collectors.toList());
+	}
+	
+	public List<MTADto> getMTAsWithCredentials(List<Long> mtaIds, boolean shouldMapCredentials) { 
+		return mtaRepository.findByIdIn(mtaIds)
+				.stream().map(mtaEnt -> dataMapper.toDto(mtaEnt, shouldMapCredentials))
+				.collect(Collectors.toList());
 	}
 	
 }

@@ -1,4 +1,4 @@
-package com.benayed.mailing.servers.controller;
+	package com.benayed.mailing.servers.controller;
 
 import java.util.Arrays;
 import java.util.List;
@@ -65,10 +65,28 @@ public class ServersController {
 	public ResponseEntity<?> getMtas(@PathVariable(value = "ids") String stringMtaIds) {
 		List<Long> mtaIds = Arrays.asList(stringMtaIds.split(",")).stream().map(Long::parseLong).collect(Collectors.toList());
 
-		List<MTADto> mtas = serverService.getMTAs(mtaIds);
+		boolean shouldMapCredentials = true;
+		List<MTADto> mtas = serverService.getMTAsWithCredentials(mtaIds, shouldMapCredentials);
 		return mtas.isEmpty() 
 				? new ResponseEntity<List<MTADto>>(HttpStatus.NOT_FOUND) 
 						: new ResponseEntity<List<MTADto>>(mtas, HttpStatus.OK);
 	}
+	
+	@Operation(summary = "Get all servers available with their mtas")
+	@ApiResponses(value = { 
+			  @ApiResponse(responseCode = "200", description = "Found the servers with mtas", 
+			    content = { @Content(mediaType = "application/json", 
+			      schema = @Schema(implementation = ServerDto.class)) }),
+			  @ApiResponse(responseCode = "404", description = "servers not found", 
+			    content = @Content) })
+	@GetMapping(path = "/servers/mtas")
+	public ResponseEntity<?> fetchServersWithMtas(){
+		
+		List<ServerDto> serversWithMtas = serverService.getServersWithMtas();
+		return serversWithMtas.isEmpty() 
+				? new ResponseEntity<List<ServerDto>>(serversWithMtas, HttpStatus.NOT_FOUND)
+						: new ResponseEntity<List<ServerDto>>(serversWithMtas, HttpStatus.OK);
+	}
+
 
 }
